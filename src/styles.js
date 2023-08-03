@@ -32,7 +32,6 @@ function formatDay(timestamp) {
 function showTemp(response) {
   let tempElement = document.querySelector("#temp-now");
   let tempInCelsius = response.data.main.temp;
-  console.log(tempInCelsius);
   tempElement.innerHTML = Math.round(tempInCelsius);
 
   let cityElement = document.querySelector("#city");
@@ -46,4 +45,20 @@ function showTemp(response) {
 
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = Math.round(response.data.wind.speed);
+
+  let dateElement = document.querySelector("#date");
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[o].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
+
+let apiKey = "6ec12c45f36a77a77e2211e31fa6ac48";
+let city = "London";
+let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+axios.get(url).then(showTemp);
