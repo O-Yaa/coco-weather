@@ -35,9 +35,10 @@ li::first-letter {
   margin-bottom: 20px;
 }
 img {
-  margin-right: 5px;
+  margin-right: 0px;
   height: 74px;
   width: 74px;
+  vertical-align: top;
 }
 .temp-now {
   color: rgb(33, 33, 33);
@@ -50,13 +51,15 @@ img {
   font-size: 16px;
   top: -34px;
 }
+
 a.celsius {
   text-decoration: none;
   color: black;
 }
 a.celsius:hover {
   opacity: 0.6;
-  cursor: pointer;
+  cursor: default;
+  text-decoration: none;
 }
 a.fahrenheit {
   text-decoration: none;
@@ -64,7 +67,8 @@ a.fahrenheit {
 }
 a.fahrenheit:hover {
   opacity: 0.6;
-  cursor: pointer;
+  cursor: default;
+  text-decoration: none;
 }
 a.source {
   text-decoration: none;
