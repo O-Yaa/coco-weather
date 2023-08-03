@@ -49,10 +49,10 @@ img {
   position: relative;
   font-size: 16px;
   top: -34px;
-  display: contents;
 }
 a.celsius {
   text-decoration: none;
+  color: black;
 }
 a.celsius:hover {
   opacity: 0.6;
@@ -60,6 +60,7 @@ a.celsius:hover {
 }
 a.fahrenheit {
   text-decoration: none;
+  color: black;
 }
 a.fahrenheit:hover {
   opacity: 0.6;
