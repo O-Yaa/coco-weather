@@ -52,13 +52,27 @@ function showTemp(response) {
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute(
     "src",
-    `https://openweathermap.org/img/wn/${response.data.weather[o].icon}@2x.png`
+    `https://openwe athermap.org/img/wn/${response.data.weather[o].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
-let apiKey = "6ec12c45f36a77a77e2211e31fa6ac48";
-let city = "London";
-let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+function search(city) {
+  let apiKey = "6ec12c45f36a77a77e2211e31fa6ac48";
+  let city = "London";
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-axios.get(url).then(showTemp);
+  axios.get(url).then(showTemp);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+  console.log(cityInputElement.value);
+}
+
+search("Berlin");
+
+let form = document.querySelector("#search-form");
+form.addEventListener("Submit", handleSubmit);
