@@ -29,11 +29,11 @@ function formatDay(timestamp) {
 }
 
 function showTemp(response) {
-  let tempElement = document.querySelector("#temp-now");
+  let temperatureElement = document.querySelector("#temp-now");
   let tempInCelsius = response.data.main.temp;
-  tempElement.innerHTML = Math.round(tempInCelsius);
+  temperatureElement.innerHTML = Math.round(tempInCelsius);
 
-  let cityElement = document.querySelector("#city");
+  let cityElement = document.querySelector("#city-name");
   cityElement.innerHTML = response.data.name;
 
   let descriptionElement = document.querySelector("#description");
@@ -68,7 +68,17 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
+function showFahrTemp(event) {
+  event.preventDefault();
+  let fahrTemp = (22 * 9) / 5 + 32;
+  let tempElement = document.querySelector("#temp-now");
+  tempElement.innerHTML = fahrTemp;
+}
+
+search("New York");
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-search("New York");
+let fahrElement = document.querySelector("#fahrenheit");
+fahrElement.addEventListener("click", showFahrTemp);
