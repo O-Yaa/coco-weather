@@ -19,7 +19,6 @@ function formatDate(timestamp) {
     "Saturday",
   ];
   let day = days[date.getDay()];
-
   return `${day} ${hours}:${minutes}`;
 }
 function formatDay(timestamp) {
@@ -44,7 +43,7 @@ function showTemp(response) {
   humidityElement.innerHTML = response.data.main.humidity;
 
   let windElement = document.querySelector("#wind");
-  windElement.innerHTML = Math.round(response.data.wind.speed);
+  windElement.innerHTML = Math.round(response.data.wind.speed * 3.6);
 
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
@@ -52,16 +51,14 @@ function showTemp(response) {
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute(
     "src",
-    `https://openwe athermap.org/img/wn/${response.data.weather[o].icon}@2x.png`
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 function search(city) {
-  let apiKey = "6ec12c45f36a77a77e2211e31fa6ac48";
-  let city = "London";
+  let apiKey = "a4f89a00246b94464bcc73cf83f9813a";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
   axios.get(url).then(showTemp);
 }
 
@@ -69,10 +66,9 @@ function handleSubmit(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
-  console.log(cityInputElement.value);
 }
 
-search("Berlin");
-
 let form = document.querySelector("#search-form");
-form.addEventListener("Submit", handleSubmit);
+form.addEventListener("submit", handleSubmit);
+
+search("New York");
