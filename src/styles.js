@@ -30,8 +30,10 @@ function formatDay(timestamp) {
 
 function showTemp(response) {
   let temperatureElement = document.querySelector("#temp-now");
-  let tempInCelsius = response.data.main.temp;
-  temperatureElement.innerHTML = Math.round(tempInCelsius);
+
+  celsTemp = response.data.main.temp;
+
+  temperatureElement.innerHTML = Math.round(celsTemp);
 
   let cityElement = document.querySelector("#city-name");
   cityElement.innerHTML = response.data.name;
@@ -70,15 +72,32 @@ function handleSubmit(event) {
 
 function showFahrTemp(event) {
   event.preventDefault();
-  let fahrTemp = (22 * 9) / 5 + 32;
   let tempElement = document.querySelector("#temp-now");
-  tempElement.innerHTML = fahrTemp;
+  //remove the active class from the celsius and add to fahrenheit
+  celsElement.classList.remove("active");
+  fahrElement.classList.add("active");
+  let fahrTemp = (celsTemp * 9) / 5 + 32;
+  tempElement.innerHTML = Math.round(fahrTemp);
 }
 
-search("New York");
+function showCelsTemp(event) {
+  event.preventDefault();
+  let tempElement = document.querySelector("#temp-now");
+  //remove active class from fahrenheit and add to celsius
+  celsElement.classList.add("active");
+  fahrElement.classList.remove("active");
+  tempElement.innerHTML = Math.round(celsTemp);
+}
+
+let celsTemp = null;
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
 let fahrElement = document.querySelector("#fahrenheit");
 fahrElement.addEventListener("click", showFahrTemp);
+
+let celsElement = document.querySelector("#celsius");
+celsElement.addEventListener("click", showCelsTemp);
+
+search("New York");
