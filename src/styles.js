@@ -21,11 +21,46 @@ function formatDate(timestamp) {
   let day = days[date.getDay()];
   return `${day} ${hours}:${minutes}`;
 }
+
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   return days[day];
+}
+
+///////Displaying the Forecast///////
+function showForecast() {
+  forecastElement = document.querySelector("#forecast");
+
+  ////to be able to create loop;
+  let forecastHTML = `<div class="row">`;
+  //create new array with days, and loop through forEach
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      
+        <div class="col-2">
+          <div class="forecast-date">${day}</div>
+          <img
+            src="https://openweathermap.org/img/wn/10d@2x.png"
+            alt=""
+            width="40"
+          />
+          <div class="forecast-temps">
+            <span class="forecast-temp-max"> 18° </span>
+            <span class="forecast-temp-min">12°</span>
+          </div>
+        </div>
+      
+    `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
 }
 
 function showTemp(response) {
@@ -101,3 +136,5 @@ let celsElement = document.querySelector("#celsius");
 celsElement.addEventListener("click", showCelsTemp);
 
 search("New York");
+//////call the forecast function
+showForecast();
