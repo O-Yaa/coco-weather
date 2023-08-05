@@ -79,3 +79,14 @@ a.source {
   text-align: center;
   color: #000;
 }
+.forecast-date {
+  font-size: 15px;
+  color: #000;
+  opacity: 0.6;
+}
+.forecast-temps {
+  font-size: 13px;
+}
+.forecast-temp-min {
+  opacity: 0.6;
+}
