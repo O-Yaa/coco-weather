@@ -30,8 +30,9 @@ function formatDay(timestamp) {
 }
 
 ///////Displaying the Forecast///////
-function showForecast() {
-  forecastElement = document.querySelector("#forecast");
+function showForecast(response) {
+  console.log(response.data.daily);
+  let forecastElement = document.querySelector("#forecast");
 
   ////to be able to create loop;
   let forecastHTML = `<div class="row">`;
@@ -63,6 +64,15 @@ function showForecast() {
   console.log(forecastHTML);
 }
 
+/////create the function getForecast(coordinates)
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "3bc520cc14bbdedfd7e45158f2ef0439";
+  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(showForecast);
+}
+
 function showTemp(response) {
   let temperatureElement = document.querySelector("#temp-now");
 
@@ -91,6 +101,11 @@ function showTemp(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  ///create function to call the forecast info using coordinates. Call the function in here, and create the function on top
+  ///of this showTemp(response) function
+
+  getForecast(response.data.coord);
 }
 
 function search(city) {
@@ -137,4 +152,3 @@ celsElement.addEventListener("click", showCelsTemp);
 
 search("New York");
 //////call the forecast function
-showForecast();
