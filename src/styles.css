@@ -84,9 +84,9 @@ a.source {
   color: #000;
   opacity: 0.6;
 }
-.forecast-temps {
+.weather-forecast-temperatures {
   font-size: 13px;
 }
-.forecast-temp-min {
+.weather-forecast-temperature-min {
   opacity: 0.6;
 }
